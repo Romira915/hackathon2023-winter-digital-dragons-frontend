@@ -1,11 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { tmp } from './components/tmp'
+import Home from './Home'
+import NotFound from './NotFound';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={'/'} elemment={<tmp />} />
+        <Route path={'/:cat'} element={<Home />} />
+        <Route path={`/*`} element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
