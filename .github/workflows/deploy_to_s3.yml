@@ -14,7 +14,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-22.04
 
-    # ロールだけでAWSログインできるやつ
+    # ロールだけでAWSログインできるやつ．
     # permissions:
     #   id-token: write
     #   contents: read
