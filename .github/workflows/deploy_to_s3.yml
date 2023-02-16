@@ -1,0 +1,46 @@
+name: Deploy to s3
+
+on:
+  push:
+    branches: [main, feature/cicd]
+
+  workflow_dispatch:
+
+env:
+  BUCKET_NAME: "digital-dragons-static"
+  AWS_REGION: "ap-northeast-1"
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-22.04
+
+    # ロールだけでAWSログインできるやつ．
+    # permissions:
+    #   id-token: write
+    #   contents: read
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          cache: yarn
+      - run: yarn install
+      - run: yarn build
+
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-session-name: github-actions-deploy-session
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: deploy to s3
+        run: |
+          aws s3 sync --delete --region ap-northeast-1 build/ s3://${{ env.BUCKET_NAME }}
+
+      # キャッシュパージ
+      # - name: clear cache
+      #   run: |
+      #     aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*"
