@@ -1,62 +1,35 @@
 import React from "react";
+import { Col, Row } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from "react-router-dom";
 
 export const Header = () => {
+  const bigCatList = ["総合", "テクノロジー", "モバイル", "アプリ", "エンタメ", "ビューティー", "ファッション", "ライフスタイル"]
+  const content = bigCatList.map(cat => (
+    <Col>
+      <Link to={`/${cat}`} className="text-decoration-none text-dark">
+        <nobr>
+          {cat}
+        </nobr>
+      </Link>
+    </Col>
+  ))
   return (
-    <div>
-    <header className="site-header">
-      <div className="wrapper site-header__wrapper">
-        <Navbar bg="light" expand="lg">
-          <Container>
-            <Navbar.Brand href="#home">PRTIMES</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#home">Link</Nav.Link>
-                <Nav.Link href="#link">Link</Nav.Link>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      </div>
+    <header style={{ position: "sticky", top: 0}}>
+      <Navbar expand="lg" style={{ background: "#294C7A" }}>
+        <Container>
+          <Link to={"/"} className="text-white text-decoration-none fs-2">PRTIMES</Link>
+        </Container>
+      </Navbar>
+      <Navbar className="mb-5 bg-white" style={{ height: "2rem", borderBottom: "1px solid", fontSize: "1em" }}>
+        <Container className="justify-content-center">
+          <Row>
+            {content}
+          </Row>
+        </Container>
+      </Navbar>
     </header>
-    </div>
   );
 };
 
