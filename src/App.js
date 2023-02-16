@@ -1,12 +1,17 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { tmp } from './components/tmp'
+import  Header  from './components/Header'
+import  Footer  from './components/Footer'
+
+
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path={'/'} elemment={<tmp />} />
-      </Routes>
+        <Header/>
+          <Routes>
+            <Route path={'/'} elemment={<tmp />} />
+          </Routes>
+        <Footer/>
     </BrowserRouter>
   );
 }
