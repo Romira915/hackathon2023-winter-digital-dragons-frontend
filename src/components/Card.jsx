@@ -7,20 +7,21 @@ import "./Card.css";
 import axios from "axios";
 import moment from "moment";
 import { EmptyRelease } from "./EmptyRelease";
-
+import { getSortPar } from "../util/sortKeyValue"
 const Card = ({cat, conditions}) => {
 
     const [posts, setPosts] = useState([])
-    const [content, setContent] = useState([]);
-
+    const [content, setContent] = useState([])
     useEffect(() => {
+        const sort = conditions["sort_value"] ?
+            `&sort_field=${getSortPar(conditions['sort_value']).key}&sort_value=${getSortPar(conditions['sort_value']).value}`
+            : ''
         const limit = conditions['limit'] ? `?limit=${conditions['limit']}` : '' 
         const startDate = conditions['startDate'] ? `&start_date=${conditions['startDate']}` : '' 
         const endDate = conditions['endDate'] ? `&end_date=${conditions['endDate']}` : '' 
         const prefecture = conditions['prefecture'] ? `&prefecture=${conditions['prefecture']}` : ''
-
-        console.log(`http://localhost/api/search${limit}${startDate}${endDate}${prefecture}`)
-        axios(`http://localhost/api/search${limit}${startDate}${endDate}${prefecture}`)
+        console.log(`http://localhost/api/search${limit}${startDate}${endDate}${prefecture}${sort}`)
+        axios(`http://localhost/api/search${limit}${startDate}${endDate}${prefecture}${sort}`)
         .then(res =>{
             // console.log(res.data)
             setPosts(res.data)
