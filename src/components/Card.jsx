@@ -14,18 +14,20 @@ const Card = ({cat, conditions}) => {
     const [content, setContent] = useState([]);
 
     useEffect(() => {
+
         const limit = conditions['limit'] ? `?limit=${conditions['limit']}` : '' 
         const startDate = conditions['startDate'] ? `&start_date=${conditions['startDate']}` : '' 
         const endDate = conditions['endDate'] ? `&end_date=${conditions['endDate']}` : '' 
         const prefecture = conditions['prefecture'] ? `&prefecture=${conditions['prefecture']}` : ''
+        const superCat = cat === '0' ? '' : `&super_category_id=${cat}`
 
-        console.log(`${process.env.REACT_APP_HOST_NAME}/api/search${limit}${startDate}${endDate}${prefecture}`)
-        axios(`${process.env.REACT_APP_HOST_NAME}/api/search${limit}${startDate}${endDate}${prefecture}`)
+        console.log(`${process.env.REACT_APP_HOST_NAME}/api/search${limit}${startDate}${endDate}${prefecture}${superCat}`)
+        axios(`${process.env.REACT_APP_HOST_NAME}/api/search${limit}${startDate}${endDate}${prefecture}${superCat}`)
         .then(res =>{
             // console.log(res.data)
             setPosts(res.data)
         })
-    }, [conditions])
+    }, [conditions, cat])
 
     useEffect(() => {
         setContent(posts.map(post => (

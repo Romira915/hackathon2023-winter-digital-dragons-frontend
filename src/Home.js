@@ -14,8 +14,6 @@ const Home = () => {
         'endDate': '',
     })
 
-    console.log(conditions)
-
     return (
         <div>
             <Container>
