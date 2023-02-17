@@ -12,6 +12,8 @@ const Home = () => {
         'prefecture': '',
         'startDate': '',
         'endDate': '',
+        'sort_field': '',
+        'sort_order': '',
     })
 
     console.log(conditions)
