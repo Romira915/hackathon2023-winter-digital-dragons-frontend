@@ -6,6 +6,7 @@ import Image from 'react-bootstrap/Image'
 import "./Card.css";
 import axios from "axios";
 import moment from "moment";
+import { EmptyRelease } from "./EmptyRelease";
 
 const Card = ({cat, conditions}) => {
 
@@ -48,7 +49,7 @@ const Card = ({cat, conditions}) => {
     <div>
         <Container className="my-4">
             <Row className="row">
-                {content}
+                { posts.length !== 0 ? content : <EmptyRelease/>}
             </Row>
         </Container>
     </div>
