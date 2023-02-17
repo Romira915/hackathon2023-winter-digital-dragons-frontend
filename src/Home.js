@@ -28,6 +28,9 @@ const Home = () => {
                         <SearchSelect cat={cat} setConditions={setConditions}/>
                     </Col>
                     <Col md={7}>
+                        <div class="d-flex justify-content-center">
+                            <SortBar cat={cat} setConditions={setConditions}/>
+                        </div>
                         <Card cat={cat} conditions={conditions}/>
                     </Col>
                 </Row>
