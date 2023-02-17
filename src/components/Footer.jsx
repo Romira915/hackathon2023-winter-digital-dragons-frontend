@@ -43,7 +43,7 @@ export const Footer = () => {
           </Row>
           <hr />
           <Row>
-            <p class="copyright">&copy; PRTIMES HACKATHON 2023 WINTER DIGITAL DRAGONS </p>
+            <p className="copyright">&copy; PRTIMES HACKATHON 2023 WINTER DIGITAL DRAGONS </p>
           </Row>
         </Container>
       </footer>
