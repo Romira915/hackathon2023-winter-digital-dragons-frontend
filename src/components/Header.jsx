@@ -2,13 +2,17 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const Header = () => {
+  const location = useLocation();
   const bigCatList = ["総合", "テクノロジー", "モバイル", "アプリ", "エンタメ", "ビューティー", "ファッション", "ライフスタイル"]
+
+  const selectedStyle = { "font-weight": "bold" }
+
   const content = bigCatList.map(cat => (
     <Col>
-      <Link to={`/${cat}`} className="text-decoration-none text-dark">
+      <Link to={`/${cat}`} className="text-decoration-none text-dark" style={decodeURIComponent(location.pathname).includes(cat) ? selectedStyle: {}}>
         <nobr>
           {cat}
         </nobr>
