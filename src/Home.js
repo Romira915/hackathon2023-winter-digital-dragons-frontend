@@ -8,7 +8,7 @@ import SearchSelect from './components/SearchSelect'
 const Home = () => {
     const { cat } = useParams();
     const [conditions, setConditions] = useState({
-        'limit': 10,
+        'limit': 42,
         'prefecture': '',
         'startDate': '',
         'endDate': '',
