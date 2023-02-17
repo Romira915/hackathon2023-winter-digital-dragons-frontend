@@ -18,8 +18,8 @@ const Card = ({cat, conditions}) => {
         const endDate = conditions['endDate'] ? `&end_date=${conditions['endDate']}` : '' 
         const prefecture = conditions['prefecture'] ? `&prefecture=${conditions['prefecture']}` : ''
 
-        console.log(`http://localhost/api/search${limit}${startDate}${endDate}${prefecture}`)
-        axios(`http://localhost/api/search${limit}${startDate}${endDate}${prefecture}`)
+        console.log(`${process.env.REACT_APP_HOST_NAME}/api/search${limit}${startDate}${endDate}${prefecture}`)
+        axios(`${process.env.REACT_APP_HOST_NAME}/api/search${limit}${startDate}${endDate}${prefecture}`)
         .then(res =>{
             // console.log(res.data)
             setPosts(res.data)
@@ -40,8 +40,6 @@ const Card = ({cat, conditions}) => {
             </Row>
         )));
     }, [posts])
-
-
 
 
     return (
