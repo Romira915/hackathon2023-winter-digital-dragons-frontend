@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import SearchTab from './components/SearchTab'
 import Card from './components/Card'
 import SearchSelect from './components/SearchSelect'
+import { SortBar } from './components/SortBar'
 
 const Home = () => {
     const { cat } = useParams();
